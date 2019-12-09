@@ -36,30 +36,39 @@ public static boolean isValidPW(int i){
 }
 
 public static boolean rule3(int i){
-    String s = Integer.toString(i);
     boolean valid = false;
-    if(hasSameNeighbor(s) == false || doesntDecrease(s) == false){
+    if(!isValidPW(i)){
         return false;
     }
     else{
-        for(int j = 0; j < 4; j++){
-            if(s.charAt(j) == s.charAt(j+1) && s.charAt(j) != s.charAt(j+2)){
-                return true;
-            }
+        String s = Integer.toString(i);
+        char curr = s.charAt(0);
+        int adjacent = 0;
+        for(int j = 0; j < 6; j++){
+           if(curr == s.charAt(j)){                                 // adjacent streak +1
+                adjacent++;
+                if(adjacent == 2 && j == 5){                        // special case if last 2 digits adjacent
+                    return true;
+                }
+           }
+           else{                                                    // adjacent streak broken
+               if(adjacent == 2){
+                   return true;                                     // meets pw criteria
+               }
+               else{                                                // begin new adjacent streak
+                   curr = s.charAt(j);
+                   adjacent = 1;
+               }
+           }
         }
-    if(!valid){
-        if(s.charAt(4) == s.charAt(5)){     // special case for index 4 because of j+2 check
-            return true;
-        }
-    }
     }
     return valid;
 }
    
 
     public static void main(String[] args) {
-        int start = 178416;
-        int end =   676461;
+        final int start = 178416;   // Input Range: 178416 - 676461
+        final int end =   676461;
         
         int count = 0;
         for(int x = start; x <= end; x++){
@@ -77,6 +86,11 @@ public static boolean rule3(int i){
             }
         }
         
+
+        System.out.println("Test case 1 (TRUE): " + rule3(112233));
+        System.out.println("Test case 2 (FALSE): " + rule3(123444));
+        System.out.println("Test case 3 (TRUE): " + rule3(111122));
+        System.out.println();
         
         System.out.println("# Valid Passwords: " + count); // Answer is 1650
         System.out.println();
