@@ -55,6 +55,7 @@ public class SpaceNode{
     }
 
     public void removeParent() {
+        this.parent.getChildren().remove(this);
         this.parent = null;
     }
 
@@ -84,5 +85,23 @@ public class SpaceNode{
 
     public int getOrbitSum(){
         return getDirectOrbits() + getIndirectOrbits();
+    }
+
+    public int getParentHopsTo(SpaceNode node){
+        int hops = 0;
+        SpaceNode tempnode = this;
+        while(true){
+            if(tempnode == node){
+                return hops;
+            }
+            else if(tempnode.isRoot()){
+                System.out.println("Could not find node " + node.getName() + " (getParentHopsTo)");
+                return 0;
+            }
+            else{
+                hops++;
+                tempnode = tempnode.getParent();
+            }
+        }
     }
 }
