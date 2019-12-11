@@ -95,6 +95,6 @@ public class UniversalOrbitMap{
         System.out.println("Orbit Count Checksum: " + orbitCountChecksum);  // Answer is 308790
         System.out.println();
 
-        System.out.println(orbitTransfer("YOU", "SAN"));
+        System.out.println("Minimum orbit transfers from 'YOU' to 'SAN' " + orbitTransfer("YOU", "SAN"));   // Answer is 472
     }
 }
