@@ -81,10 +81,33 @@ public class SpaceImage{
         }
     }
 
-    public void printPicture(){
+    public void printAllLayers(){
         for(int i = 0; i < layers; i++){
             printLayer(i);
             System.out.println();
         }
+    }
+
+    public String getFirstVisibleColor(int h, int w){
+        for(int i = 0; i < layers; i++){
+            if(pixels[i][h][w] == 0){
+                 return " ";
+             }
+             else if(pixels[i][h][w] == 1){
+                return "*";
+             }
+        }
+        return "x";
+    }
+
+    public void render(){
+        for(int i = 0; i < height; i++){
+            for(int y = 0; y < width; y++){
+               System.out.print(getFirstVisibleColor(i, y));
+            }
+            System.out.println();
+        }
+
+       
     }
 }

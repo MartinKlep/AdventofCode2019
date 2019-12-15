@@ -19,7 +19,7 @@ public class SpaceImageConverter{
         }
 
         SpaceImage password = new SpaceImage(25, 6, rawFile);
-        //password.printPicture(); 
+        //password.printAllLAyers(); 
 
         int[][] theLayer = password.getLayerFewestZeros();
         System.out.println("The Layer: ");
@@ -28,5 +28,7 @@ public class SpaceImageConverter{
         System.out.println();
         int result = password.oneXtwo(theLayer);
         System.out.println("Result part 1: " + result);
+    
+        password.render();
     }
 }
