@@ -103,7 +103,7 @@ public class SpaceImage{
     public void render(){
         for(int i = 0; i < height; i++){
             for(int y = 0; y < width; y++){
-               System.out.print(getFirstVisibleColor(i, y));
+               System.out.print(getFirstVisibleColor(i, y) + " ");
             }
             System.out.println();
         }
